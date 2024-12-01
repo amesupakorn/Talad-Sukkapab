@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+
 
 const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState("Home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const location = useLocation(); // ใช้ location เพื่อเช็ค path ปัจจุบัน
+  const validPaths = ["home", "about", "product", "contact"]; 
 
   return (
     <nav className="bg-white shadow-md fixed w-full top-0 z-10">
@@ -41,9 +46,12 @@ const Navbar = () => {
 
           {/* Actions */}
           <div className="hidden md:flex items-center space-x-2">
+            <Link to="/signin">
             <button className="bg-red-500 text-white font-medium rounded-lg px-5 py-1.5 hover:bg-red-600">
               Login
             </button>
+            </Link>
+
           </div>
 
           {/* Hamburger Menu for Mobile */}
@@ -159,19 +167,24 @@ const Navbar = () => {
             </li>
 
 
-            {["Home", "About", "Product", "Contact"].map((menu) => (
-              <li
-                key={menu}
-                className={`cursor-pointer ${
-                  activeMenu === menu
-                    ? "text-red-500 font-semibold"
-                    : "hover:text-red-500"
-                }`}
-                onClick={() => setActiveMenu(menu)}
-              >
-                {menu}
-              </li>
-            ))}
+            {["Home", "About", "Product", "Contact"].map((menu) => {
+              // ตรวจสอบว่าปัจจุบัน path เป็นของ validPaths หรือไม่
+              const isPathValid = validPaths.includes(location.pathname.slice(1));
+
+              return (
+                <li
+                  key={menu}
+                  className={`cursor-pointer ${
+                    isPathValid && activeMenu === menu
+                      ? "text-red-500 font-semibold"
+                      : "text-gray-700"
+                  } hover:text-red-500`}
+                  onClick={() => setActiveMenu(menu)} // ยังคงเปลี่ยน Active Menu ได้
+                >
+                  <Link to={`/${menu.toLowerCase()}`}>{menu}</Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
 
