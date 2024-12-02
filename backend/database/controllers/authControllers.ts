@@ -14,6 +14,16 @@ const AuthController = {
     }
   }) as RequestHandler,
 
+  confirmEmail: (async (req, res) => {
+    try {
+      const { token } = req.query;
+      const response = await AuthService.confirmEmail(token as string);
+      res.status(200).json(response);
+    } catch (error) {
+      res.status((error as CustomError).statusCode || 500).json({ error: (error as CustomError).message });
+    }
+  }) as RequestHandler,
+
   signIn: (async (req, res) => {
     try {
       const { email, password } = req.body;

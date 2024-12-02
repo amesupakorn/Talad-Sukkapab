@@ -3,8 +3,12 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../nav/navbar";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { ring } from 'ldrs'
+
 
 const SignUp = () => {
+  ring.register()
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -12,7 +16,7 @@ const SignUp = () => {
     confirmPassword: "",
   });
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // สำหรับสถานะการโหลด
+  const [isLoading, setIsLoading] = useState(false); 
   const navigate = useNavigate();
 
   // ฟังก์ชันจัดการ Input Field
@@ -27,9 +31,12 @@ const SignUp = () => {
 
     const { username, email, password, confirmPassword } = formData;
 
-    // ตรวจสอบ Validation
-    if (!username || !email || !password || !confirmPassword) {
-      return setError("All fields are required");
+    if (!username.trim() || !email.trim() || !password.trim() || !confirmPassword.trim()) {
+        return setError("All fields are required");
+      }
+      
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return setError("Invalid email format");
     }
 
     if (password !== confirmPassword) {
@@ -42,7 +49,7 @@ const SignUp = () => {
     try {
       const API_URL = "http://localhost:5001";
 
-      const response = await axios.post(
+      await axios.post(
         `${API_URL}/auth/signup`,
         { username, email, password, confirmPassword },
         {
@@ -52,12 +59,8 @@ const SignUp = () => {
         }
       );
 
-      console.log("Signup successful:", response.data);
+      navigate("/signin"); 
 
-      // ไปที่หน้า Sign In หลังสมัครเสร็จ
-      setTimeout(() => {
-        navigate("/signin"); // เปลี่ยนไปหน้า Sign In
-      }, 3000);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       const errorMessage = err.response?.data?.error || "Something went wrong";
@@ -209,27 +212,14 @@ const SignUp = () => {
                     : "bg-red-500 text-white hover:bg-red-600"
                 }`}
               >
-                {isLoading ? (
-                  <svg
-                    className="animate-spin h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8v8H4z"
-                    ></path>
-                  </svg>
+                {isLoading ? (                  
+                  <l-ring
+                    size="20"
+                    stroke="2"
+                    bg-opacity="0"
+                    speed="2" 
+                    color="white" 
+                  ></l-ring>
                 ) : (
                   "Sign Up"
                 )}

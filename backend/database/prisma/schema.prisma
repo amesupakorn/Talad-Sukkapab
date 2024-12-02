@@ -12,6 +12,8 @@ model users {
   username  String? @db.VarChar(100) @unique
   email String? @db.VarChar(100) @unique
   password String 
+  isEmailVerified  Boolean  @default(false)
+  emailConfirmationToken String? @unique
   createdAt DateTime @default(now())
 
 
