@@ -9,6 +9,10 @@ datasource db {
 
 model users {
   id    Int     @id @default(autoincrement())
-  name  String? @db.VarChar(100)
-  email String? @db.VarChar(100)
+  username  String? @db.VarChar(100) @unique
+  email String? @db.VarChar(100) @unique
+  password String 
+  createdAt DateTime @default(now())
+
+
 }

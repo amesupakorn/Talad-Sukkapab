@@ -4,8 +4,8 @@ import UserService from '../services/user';
 const UserController = {
   createUser: (async (req, res) => {
     try {
-      const { name, email } = req.body;
-      const user = await UserService.createUser({ name, email });
+      const { username, email, password } = req.body;
+      const user = await UserService.createUser({ username, email, password});
       res.status(201).json(user);
     } catch (error) {
       res.status(400).json({ error: 'Failed to create user' });
@@ -37,8 +37,8 @@ const UserController = {
   updateUser: (async (req, res) => {
     try {
       const userId = parseInt(req.params.id);
-      const { name, email } = req.body;
-      const updatedUser = await UserService.updateUser(userId, { name, email });
+      const { email } = req.body;
+      const updatedUser = await UserService.updateUser(userId, { email });
       res.json(updatedUser);
     } catch (error) {
       res.status(400).json({ error: 'Failed to update user' });

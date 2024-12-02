@@ -3,7 +3,7 @@ import prisma from "../prisma/prisma";
 // User Service: จัดการ CRUD กับฐานข้อมูล
 const UserService = {
   // Create a user
-  async createUser(data: { name: string; email: string }) {
+  async createUser(data: { username: string; email: string; password: string;}) {
     return prisma.users.create({
       data,
     });

@@ -14,7 +14,7 @@ const SignIn = () => {
           {/* Illustration */}
           <div className="hidden md:block">
             <img
-              src="images/shop.png" // แทนด้วย URL ภาพจริง
+              src="images/shop.png" 
               alt="Illustration"
               className="w-[500px] h-auto"
             />
