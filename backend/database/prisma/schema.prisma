@@ -15,6 +15,4 @@ model users {
   isEmailVerified  Boolean  @default(false)
   emailConfirmationToken String? @unique
   createdAt DateTime @default(now())
-
-
 }

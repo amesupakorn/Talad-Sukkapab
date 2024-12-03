@@ -34,6 +34,9 @@ const AuthController = {
       res.status(customError.statusCode || 400).json({ error: customError.message || "Failed to sign in" });
     }
   }) as RequestHandler,
+
 };
+
+
 
 export default AuthController;
