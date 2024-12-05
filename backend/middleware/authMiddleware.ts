@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import jwt from 'jsonwebtoken';
-import prisma from '../../database/prisma/prisma'; 
+import prisma from '../database/prisma/prisma'; 
 
 export const authenticateUser = (async (req, res, next) => {
 
