@@ -1,7 +1,6 @@
 import express from "express";
 import AuthController from "../database/controllers/authControllers";
-import { ProfileController } from "../database/controllers/profileControllers";
-import { authenticateUser } from "../middleware/authMiddleware";
+import { authenticateUser } from "../src/middleware/authMiddleware";
 
 const router = express.Router();
 
@@ -9,7 +8,7 @@ router.post("/signup", AuthController.signUp);
 router.post("/signin", AuthController.signIn);
 router.get("/confirm-email", AuthController.confirmEmail);
 
-router.get("/me", authenticateUser, ProfileController); 
+router.get("/me", authenticateUser); 
 
 
 export default router;

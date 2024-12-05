@@ -1,8 +1,14 @@
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 const UserDropdown = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const logout = () => {
+    Cookies.remove("csrftoken"); 
+    window.location.href = "/";
+};
+  
   return (
     <div className="relative">
       {/* Profile Image */}
@@ -44,7 +50,7 @@ const UserDropdown = () => {
             
             <li
               className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"
-              onClick={() => console.log("Logout")}
+              onClick={logout}
             >
               <svg className="h-5 w-5 text-zinc-800"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />  <path d="M7 12h14l-3 -3m0 6l3 -3" /></svg>
               <span className="ml-3">Logout</span>

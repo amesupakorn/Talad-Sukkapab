@@ -25,9 +25,8 @@ const Navbar = () => {
           setIsLoggedIn(true);
           setProfileImage(response.data.profileImage || "https://via.placeholder.com/40");
         }
-      } catch (error) {
-        console.error("User not logged in or session expired", error);
-        setIsLoggedIn(false); // ผู้ใช้ไม่ได้ล็อกอิน
+      } catch {
+        setIsLoggedIn(false); 
       }
     };
 

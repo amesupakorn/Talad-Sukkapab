@@ -5,7 +5,7 @@ import { CustomError } from "../../types/customError";
 import crypto from "crypto";
 import sendConfirmationEmail from "./emailService";
 
-const JWT_SECRET = crypto.randomBytes(64).toString("hex");
+const JWT_SECRET = process.env.JWT_SECRET!;
 
 const AuthService = {
 
@@ -81,8 +81,10 @@ const AuthService = {
 
   signIn: async ({ email, password }: { email: string; password: string }) => {
     // ตรวจสอบว่าผู้ใช้งานมีอยู่ในฐานข้อมูลหรือไม่
-    const user = await prisma.users.findUnique({ where: { email } });
   
+    const user = await prisma.users.findUnique({ where: { email } });
+
+
     if (!user) {
       const error = new Error("Invalid email or password") as CustomError;
       error.statusCode = 401;
@@ -114,9 +116,7 @@ const AuthService = {
     return { token, user };
   },
 
-
-  
-  
+    
 };
 
 export default AuthService;

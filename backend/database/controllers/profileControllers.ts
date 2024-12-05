@@ -5,7 +5,11 @@ import { RequestHandler } from "express";
 
 export const ProfileController = (async (req, res) => {
     try {
-        const user = await ProfileService.getUserProfile(req.user!.id);
+        if (!req.user) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+
+        const user = await ProfileService.getUserProfile(req.user.id);
         res.json(user);
 
     } catch (error: unknown) {

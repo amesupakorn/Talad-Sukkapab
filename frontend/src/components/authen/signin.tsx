@@ -39,12 +39,13 @@ const SignIn = () => {
         }
       );
 
-      // (สามารถเก็บ token ใน localStorage ได้ถ้าจำเป็น)
       localStorage.setItem("token", response.data.token);
 
-      // นำผู้ใช้ไปหน้าแรก
-      navigate("/");
+      setTimeout(() =>{
+        navigate("/");
+      }, 2000)
 
+      
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       const errorMessage = err.response?.data?.error || "Invalid email or password";
