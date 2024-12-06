@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 const Arrival = () => {
     const product = [
@@ -17,6 +17,7 @@ const Arrival = () => {
                 </a>
             </div>
 
+            <Link to="/product">
             <div className="grid grid-flow-col  auto-cols-[90%] sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto max-w-full">
             {product.map(({ brand, name, image, price, size}, index) => (
                 <div
@@ -48,6 +49,7 @@ const Arrival = () => {
                 </div>
             ))}
             </div>
+            </Link>
         </div>
     );
 };
