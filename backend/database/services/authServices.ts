@@ -4,11 +4,12 @@ import jwt from "jsonwebtoken";
 import { CustomError } from "../../types/customError";
 import crypto from "crypto";
 import sendConfirmationEmail from "./emailService";
+import dotenv from 'dotenv';
 
+dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET!;
 
 const AuthService = {
-
   signUp: async ({
     username,
     email,

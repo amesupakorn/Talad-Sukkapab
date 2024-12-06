@@ -28,7 +28,7 @@ const SignIn = () => {
       setIsLoading(true);
       setError("");
 
-      const API_URL = "http://localhost:5001"; // URL Backend
+      const API_URL = "http://localhost:5001"; 
       const response = await axios.post(
         `${API_URL}/auth/signin`,
         { email, password },
@@ -41,11 +41,9 @@ const SignIn = () => {
 
       localStorage.setItem("token", response.data.token);
 
-      setTimeout(() =>{
-        navigate("/");
-      }, 2000)
+      navigate("/");
 
-      
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       const errorMessage = err.response?.data?.error || "Invalid email or password";

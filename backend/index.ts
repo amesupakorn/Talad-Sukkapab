@@ -3,6 +3,7 @@ import cors from "cors";
 
 import authRoutes from "./routes/authRoutes"
 import dotenv from 'dotenv';
+import Middleware from './middleware/authMiddleware';
 dotenv.config();
 
 const app = express();

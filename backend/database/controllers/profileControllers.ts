@@ -1,15 +1,14 @@
-import { Request, Response } from 'express';
 import ProfileService from '../services/profileServices';
 import { CustomError } from '../../types/customError';
 import { RequestHandler } from "express";
 
-export const ProfileController = (async (req, res) => {
+const ProfileController = (async (req, res) => {
     try {
-        if (!req.user) {
+        if (!(req as any).user) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
 
-        const user = await ProfileService.getUserProfile(req.user.id);
+        const user = await ProfileService.getUserProfile((req as any).user.id);
         res.json(user);
 
     } catch (error: unknown) {
@@ -18,3 +17,5 @@ export const ProfileController = (async (req, res) => {
     }
 })as RequestHandler;
 
+
+export default ProfileController;

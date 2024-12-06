@@ -1,37 +1,11 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import UserDropdown from "./userDrop";
-import axios from "axios";
 
 const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState("Home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); 
-  const [profileImage, setProfileImage] = useState("");
-
-  const location = useLocation();
-  const validPaths = ["home", "about", "product", "contact"];
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const API_URL = "http://localhost:5001";
-        const response = await axios.get(`${API_URL}/auth/me`, {
-          withCredentials: true,
-        });
-
-        // ตั้งค่าผู้ใช้ ถ้ามีการล็อกอินอยู่
-        if (response.data) {
-          setIsLoggedIn(true);
-          setProfileImage(response.data.profileImage || "https://via.placeholder.com/40");
-        }
-      } catch {
-        setIsLoggedIn(false); 
-      }
-    };
-
-    fetchUserData();
-  }, []);
+  
 
   return (
     <nav className="bg-white shadow-md fixed w-full top-0 z-10">
@@ -69,23 +43,7 @@ const Navbar = () => {
 
           {/* Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            {isLoggedIn ? (
-              <div className="relative">
-                <img
-                  src={profileImage}
-                  alt="User Profile"
-                  className="w-10 h-10 rounded-full cursor-pointer border border-gray-300"
-                />
-                {/* Dropdown สำหรับ User */}
-                <UserDropdown />
-              </div>
-            ) : (
-              <Link to="/signin">
-                <button className="bg-red-500 text-white font-medium rounded-lg px-5 py-1.5 hover:bg-red-600">
-                  Login
-                </button>
-              </Link>
-            )}
+            <UserDropdown />
           </div>
 
           {/* Hamburger Menu for Mobile */}
