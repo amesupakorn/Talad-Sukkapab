@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 
 const UserDropdown = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
     const [isLoggedIn, setIsLoggedIn] = useState(false); 
     const [profileImage, setProfileImage] = useState("");
+    const [username, setUsername] = useState("");
 
     const logout = () => {
-        Cookies.remove("csrftoken"); 
+        localStorage.removeItem("token");
         window.location.href = "/";
     };
   
@@ -34,6 +35,7 @@ const UserDropdown = () => {
             // ตั้งค่าผู้ใช้ ถ้ามีการล็อกอินอยู่
             if (response.data) {
               setIsLoggedIn(true);
+              setUsername(response.data.username)
               setProfileImage(response.data.profileImage || "https://via.placeholder.com/40");
             }
           } catch (error) {
@@ -53,13 +55,14 @@ const UserDropdown = () => {
         <img
             src={profileImage}
             alt="User Profile"
-            className="w-10 h-10 rounded-full cursor-pointer border border-gray-300"
-            onClick={() => setIsDropdownOpen((prev) => !prev)}
+            className="w-8 h-8 rounded-full cursor-pointer border border-gray-300"
+            onMouseEnter={() => setIsDropdownOpen(true)}
         />
 
         {/* Dropdown Menu */}
         {isDropdownOpen && (
-            <div className="absolute right-0 mt-2 w-64 bg-white shadow-lg rounded-lg py-4 z-20">
+            <div className="absolute right-0 mr-2  w-64 bg-white shadow-lg rounded-lg py-3 z-20" 
+            onMouseLeave={() => setIsDropdownOpen(false)}>
             {/* User Info */}
             <div className="flex items-center px-4 pb-3 border-b">
                 <img
@@ -68,8 +71,13 @@ const UserDropdown = () => {
                 className="w-12 h-12 rounded-full border border-gray-300"
                 />
                 <div className="ml-4">
-                <h4 className="text-gray-800 font-semibold">Supakorn Thongaerd</h4>
-                <p className="text-green-500 text-sm font-medium">Verified</p>
+                    <h4 className="text-gray-800 font-semibold">{username}</h4>
+                    <div className="flex space-x-1 items-center">
+                        <svg className="h-5 w-5 text-green-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                            </svg>
+                        <p className="text-green-500 text-xs font-medium">Verified</p>
+                    </div>
                 </div>
             </div>
 
@@ -87,11 +95,11 @@ const UserDropdown = () => {
                 </li>
                 
                 <li
-                className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"
+                className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
                 onClick={logout}
                 >
                 <svg className="h-5 w-5 text-zinc-800"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />  <path d="M7 12h14l-3 -3m0 6l3 -3" /></svg>
-                <span className="ml-3">Logout</span>
+                <span className="ml-3 text-gray-700">Logout</span>
                 </li>
             </ul>
             </div>
