@@ -55,6 +55,46 @@ const ProductController = {
       res.status(500).json({ error: "Failed to fetch product" });
     }
   }) as RequestHandler,
+
+  updateProduct: (async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { name, description, price, categoryId } = req.body;
+
+      // Extract uploaded file paths (if any)
+      const images = req.files
+        ? (req.files as Express.Multer.File[]).map(
+            (file) => `/uploads/products/${file.filename}`
+          )
+        : undefined;
+
+      const updatedProduct = await ProductService.updateProduct(parseInt(id), {
+        name,
+        description,
+        price: price ? parseFloat(price) : undefined,
+        categoryId: categoryId ? parseInt(categoryId) : undefined,
+        images,
+      });
+
+      res.status(200).json(updatedProduct);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Failed to update product" });
+    }
+  })as RequestHandler,
+
+  // Delete a product
+  deleteProduct:( async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      await ProductService.deleteProduct(parseInt(id));
+      res.status(204).send();
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Failed to delete product" });
+    }
+  })as RequestHandler,
 };
 
 export default ProductController;
