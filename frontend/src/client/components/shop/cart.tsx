@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Navbar from "../nav/navbar";
-const Product = () => {
+import { useState } from "react";
+
+const Cart = () => {
   const [quantity, setQuantity] = useState(1);
 
   const increaseQuantity = () => {
@@ -15,8 +15,6 @@ const Product = () => {
 
   return (
     <div>
-    <Navbar />
-
     <div className="h-[100px]"></div>
     <div className="container max-w-5xl mx-auto p-6 md:p-24 flex flex-col md:flex-row gap-8 ">
     {/* Left Section: Product Images */}
@@ -125,4 +123,4 @@ const Product = () => {
 
 };
 
-export default Product;
+export default Cart;

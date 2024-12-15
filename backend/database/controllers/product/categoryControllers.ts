@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import { RequestHandler } from "express";
 import CategoryService from "../../services/product/categoryServices";
 
 const CategoryController = {
   // Create a category
-  createCategory: async (req: Request, res: Response) => {
+  createCategory: (async (req, res) => {
     try {
       const { name, description } = req.body;
       const image = req.file ? `/uploads/categories/${req.file.filename}` : undefined;
@@ -19,10 +19,10 @@ const CategoryController = {
       console.error(error);
       res.status(500).json({ error: "Failed to create category" });
     }
-  },
+  }) as RequestHandler,
 
   // Get all categories
-  getCategories: async (_req: Request, res: Response) => {
+  getCategories: (async (req, res) => {
     try {
       const categories = await CategoryService.getCategories();
       res.status(200).json(categories);
@@ -30,10 +30,10 @@ const CategoryController = {
       console.error(error);
       res.status(500).json({ error: "Failed to fetch categories" });
     }
-  },
+  }) as RequestHandler,
 
   // Get a category by ID
-  getCategoryById: async (req: Request, res: Response) => {
+  getCategoryById: ( async (req, res) => {
     try {
       const { id } = req.params;
 
@@ -43,10 +43,10 @@ const CategoryController = {
       console.error(error);
       res.status(404).json({ error: "Category not found" });
     }
-  },
+  })as RequestHandler,
 
   // Update a category
-  updateCategory: async (req: Request, res: Response) => {
+  updateCategory: (async (req, res) => {
     try {
       const { id } = req.params;
       const { name, description } = req.body;
@@ -63,10 +63,10 @@ const CategoryController = {
       console.error(error);
       res.status(500).json({ error: "Failed to update category" });
     }
-  },
+  }) as RequestHandler,
 
   // Delete a category
-  deleteCategory: async (req: Request, res: Response) => {
+  deleteCategory: (async (req, res) => {
     try {
       const { id } = req.params;
 
@@ -76,7 +76,7 @@ const CategoryController = {
       console.error(error);
       res.status(500).json({ error: "Failed to delete category" });
     }
-  },
+  }) as RequestHandler,
 };
 
 export default CategoryController;

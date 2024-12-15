@@ -1,5 +1,5 @@
-import Navbar from "../nav/navbar";
-import Arrival from "./arrival";
+import Navbar from "../components/nav/navbar";
+import Arrival from "../components/home/arrival";
 const Home = () => {
   const catagory = [
     { name:"Protein Powders & Bars", icon: "/images/home/protein.webp"},

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../nav/navbar";
+import Navbar from "../components/nav/navbar";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { ring } from 'ldrs'
