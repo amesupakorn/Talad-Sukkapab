@@ -2,7 +2,8 @@ import express, { Request, Response } from 'express';
 import cors from "cors";
 
 import productRoutes from "./routes/productRoutes"
-import authRoutes from "./routes/authRoutes"
+import authRoutes from "./routes/authroutes"
+import categoryRotes from "./routes/categoryRoutes"
 import dotenv from 'dotenv';
 import Middleware from './middleware/authMiddleware';
 import path from "path";
@@ -29,6 +30,7 @@ app.use("/productImage", express.static(path.join(__dirname, "./uploads/products
 
 app.use("/auth", authRoutes);
 app.use("/products", productRoutes);
+app.use("/category", categoryRotes);
 
 
 app.listen(PORT, () => {

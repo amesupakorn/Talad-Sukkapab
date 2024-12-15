@@ -1,7 +1,7 @@
 import express from "express";
-import AuthController from "../database/controllers/authControllers";
+import AuthController from "../database/controllers/auth/authControllers";
 import authenticateUser from "../middleware/authMiddleware";
-import ProfileController from "../database/controllers/profileControllers";
+import ProfileController from "../database/controllers/auth/profileControllers";
 
 const router = express.Router();
 

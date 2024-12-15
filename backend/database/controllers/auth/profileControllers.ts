@@ -1,5 +1,5 @@
-import ProfileService from '../services/profileServices';
-import { CustomError } from '../../types/customError';
+import ProfileService from '../../services/auth/profileServices';
+import { CustomError } from '../../../types/customError';
 import { RequestHandler } from "express";
 
 const ProfileController = (async (req, res) => {

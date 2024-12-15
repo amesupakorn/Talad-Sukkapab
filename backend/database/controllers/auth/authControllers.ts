@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
-import AuthService from "../services/authServices";
-import { CustomError } from "../../types/customError"
+import AuthService from "../../services/auth/authServices";
+import { CustomError } from "../../../types/customError"
 
 const AuthController = {
   signUp: (async (req, res) => {

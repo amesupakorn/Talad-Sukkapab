@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import ProductService from "../services/productServices";
+import ProductService from "../../services/product/productServices";
 
 
 const ProductController = {
