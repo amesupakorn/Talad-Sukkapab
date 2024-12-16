@@ -28,6 +28,9 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use("/productImage", express.static(path.join(__dirname, "./uploads/products")));
 
+app.use("/categoryImage", express.static(path.join(__dirname, "./uploads/categories")));
+
+app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 app.use("/auth", authRoutes);
 app.use("/products", productRoutes);
 app.use("/category", categoryRotes);

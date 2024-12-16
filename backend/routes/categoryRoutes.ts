@@ -6,7 +6,7 @@ import path from "path";
 const router = express.Router();
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {cb(null, path.join(__dirname, "../../uploads/categories")); // ที่เก็บไฟล์
+    destination: (req, file, cb) => {cb(null, path.join(__dirname, "../uploads/categories")); // ที่เก็บไฟล์
     },
     filename: (req, file, cb) => {const uniqueName = `${Date.now()}-${file.originalname}`;cb(null, uniqueName); // ตั้งชื่อไฟล์
     },

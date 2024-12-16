@@ -5,6 +5,8 @@ import SignUp from "./client/page/signup";
 import ConfirmEmail from "./client/components/authen/confirmEmail";
 import Product from "./client/page/product";
 
+import CategoryManage from "./admin/page/categoryManage";
+
 const App = () => {
   return (
     <Router>
@@ -20,6 +22,8 @@ const App = () => {
 
 
       {/* admin */}
+        <Route path="admin/category" element={<CategoryManage/>}/>
+
 
         
         {/* <Route path="/about" element={<About />} />
