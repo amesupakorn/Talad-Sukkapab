@@ -4,7 +4,7 @@ import Navbar from "../components/nav/navbar";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { ring } from 'ldrs'
-
+import SignGoogle from "../components/authen/signGoogle";
 
 const SignIn = () => {
   ring.register()
@@ -153,18 +153,14 @@ const SignIn = () => {
                 )}
               </button>
 
+              <div className="flex items-center w-full">
+                <div className="flex-grow border-t border-gray-300"></div>
+                <span className="mx-3 text-gray-500 text-sm">or</span>
+                <div className="flex-grow border-t border-gray-300"></div>
+              </div>              
               {/* Google Button */}
-              <button
-                type="button"
-                className="w-full flex items-center justify-center border border-gray-300 py-3 rounded-lg font-medium hover:bg-gray-100 transition"
-              >
-                <img
-                  src="icon/Google.webp"
-                  alt="Google"
-                  className="w-8 h-8 mr-2"
-                />
-                Google
-              </button>
+
+              <SignGoogle />
             </form>
 
             {/* Footer */}
