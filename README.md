@@ -1,2 +1,2 @@
 # Talad-Sukkapab
-E-commerce selling health products
+Health Product E-commerce Built with Node.js and React
