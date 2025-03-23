@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import UserService from '../services/user';
+import UserService from '../database/profile/user';
 
 const UserController = {
   createUser: (async (req, res) => {

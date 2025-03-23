@@ -1,5 +1,6 @@
 import Navbar from "../components/nav/navbar";
 import Arrival from "../components/home/arrival";
+
 const Home = () => {
   const catagory = [
     { name:"Protein Powders & Bars", icon: "/images/home/protein.webp"},
@@ -8,8 +9,7 @@ const Home = () => {
     { name:"Air Purifiers", icon: "/images/home/air.webp"},
     { name:"Organic Skincare", icon: "/images/home/pngtree.png"},
     { name:"Vitamins & Minerals",icon: "/images/home/blackmores.webp"},
-           
-
+    
   ]
 
   return (

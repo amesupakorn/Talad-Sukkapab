@@ -1,5 +1,5 @@
-import prisma from "../../prisma/prisma";
-import { CustomError } from "../../../types/customError";
+import prisma from "../prisma";
+import { CustomError } from "../../lib/customError";
 
 const ProfileService = {
     getUserProfile: async (userId: number) => {

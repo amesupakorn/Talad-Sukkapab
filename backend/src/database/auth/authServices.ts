@@ -1,7 +1,7 @@
-import prisma from "../../prisma/prisma";
+import prisma from "../prisma";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { CustomError } from "../../../types/customError";
+import { CustomError } from "../../lib/customError";
 import crypto from "crypto";
 import sendConfirmationEmail from "./emailService";
 import dotenv from 'dotenv';

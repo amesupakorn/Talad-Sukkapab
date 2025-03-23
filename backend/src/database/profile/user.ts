@@ -1,4 +1,4 @@
-import prisma from "../prisma/prisma";
+import prisma from "../prisma";
 
 // User Service: จัดการ CRUD กับฐานข้อมูล
 const UserService = {
