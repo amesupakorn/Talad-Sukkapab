@@ -2,10 +2,10 @@ import express, { Request, Response } from 'express';
 import cors from "cors";
 
 import productRoutes from "./routes/productRoutes"
-import authRoutes from "./routes/authroutes"
+import authRoutes from "./routes/authRoutes"
 import categoryRotes from "./routes/categoryRoutes"
 import dotenv from 'dotenv';
-import Middleware from './middleware/authMiddleware';
+import Middleware from '../middleware/authMiddleware';
 import path from "path";
 
 dotenv.config();
